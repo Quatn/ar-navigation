@@ -25,3 +25,4 @@ dist-ssr
 
 # personal stuff
 pnpm-lock.yaml
+package-lock.json
