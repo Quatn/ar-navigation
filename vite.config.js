@@ -3,7 +3,7 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
     assetsInclude: ["**/*.gltf"],
-    base: "/ARIndoorNavigation-Threejs/",
+    // base: "/ARIndoorNavigation-Threejs/",
     publicDir: "static/",
     server: {
         host: true,
