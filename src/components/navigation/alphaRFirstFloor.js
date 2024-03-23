@@ -4,6 +4,7 @@ import Alpha1stFloor from "/AlphaRFirstFloor.jpeg";
 function AlphaRFirstFloor() {
     // create occluder material
    const  occluderMaterial = new MeshStandardMaterial({ color: 0x00ff00 });
+   occluderMaterial.colorWrite = false;
 
     // create room map
     const navigationArea = new Group();
