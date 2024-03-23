@@ -8,7 +8,7 @@ function AlphaRFirstFloor() {
     // create room map
     const navigationArea = new Group();
 
-    //Horizontal walls
+    // Horizontal walls
     navigationArea.add(createWallElement(new Vector3(1.58, 1, -4.15), new Vector3(0, 0, 0), new Vector3(20.4, 3, 0.06),occluderMaterial));
     
     // 1 group
@@ -94,7 +94,7 @@ function AlphaRFirstFloor() {
      const floorPlaneMesh = new Mesh(floorGeometry, floorMaterial);
      floorPlaneMesh.rotation.x = -0.5 * Math.PI
      floorPlaneMesh.renderOrder = 3;
-     // floorPlaneMesh.visible = false;
+    //  floorPlaneMesh.visible = false;
      navigationArea.add(floorPlaneMesh);
  
      // navigation area parent for easier placement
