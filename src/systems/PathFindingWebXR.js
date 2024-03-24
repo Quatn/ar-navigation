@@ -48,7 +48,7 @@ class PathFindingWebXR {
                         navMeshGeometry = child;
                     }
                 });
-                navMeshGeometry.visible = true;
+                navMeshGeometry.visible = false;
 
                 zoneData = Pathfinding.createZone(navMeshGeometry.geometry);
                 pathfinding.setZoneData(zoneName, zoneData);
