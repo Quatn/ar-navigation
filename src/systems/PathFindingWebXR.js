@@ -12,6 +12,7 @@ import { Pathfinding } from "three-pathfinding";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import NavMeshUrl from "/alphaRFirstFloor.gltf";
 import alphaRFirstFloorModelUrl from "/alphaRFirstFloor.glb?url";
+import Positions from "../data.js"
 
 const zeroVector = new Vector3(0, 0, 0);
 
@@ -86,7 +87,7 @@ class PathFindingWebXR {
     // highlight line vertices with small cubes
     const geometry = new BoxGeometry(0.1, 0.1, 0.1);
     const material = new MeshBasicMaterial({ color: 0xff0000 });
-    for (let index = 0; index < 20; index++) {
+    for (let index = 0; index < 50; index++) {
       const cube = new Mesh(geometry, material);
       cube.visible = false;
       cube.renderOrder = 3;
@@ -94,15 +95,12 @@ class PathFindingWebXR {
       navigationArea.add(cube);
     }
 
-    document.getElementById("kitchenTarget").addEventListener("click", () => {
-      console.log("kitchen selected");
-      tempTargetPosition.set(0, 0.5, -2);
-    });
     document
-      .getElementById("livingRoomTarget")
+      .getElementById("showRoomTarget")
       .addEventListener("click", () => {
-        console.log("livingRoom selected");
-        tempTargetPosition.set(-40, 0, 4);
+        console.log("showRoom selected");
+        const position = Positions['showRoomTarget'].position
+        tempTargetPosition.set(position.x, position.y, position.z);
       });
   }
 
@@ -111,8 +109,16 @@ class PathFindingWebXR {
 
     groupID = pathfinding.getGroup(zoneName, start);
     // console.log("GroupID, StartPosition", groupID, start);
-    const startNode = pathfinding.getClosestNode(startPosition, zoneName, groupID);
-    startPosition.set(startNode.centroid.x, startNode.centroid.y, startNode.centroid.z);
+    const startNode = pathfinding.getClosestNode(
+      startPosition,
+      zoneName,
+      groupID
+    );
+    startPosition.set(
+      startNode.centroid.x,
+      startNode.centroid.y,
+      startNode.centroid.z
+    );
 
     // console.log("GroupID, StartPosition, StartNode", groupID, startPosition, startnode);
 
@@ -134,8 +140,16 @@ class PathFindingWebXR {
   setTargetPosition(target) {
     targetPosition.set(target.x, target.y, target.z);
 
-    const endNode = pathfinding.getClosestNode(targetPosition, zoneName, groupID);
-    targetPosition.set(endNode.centroid.x, endNode.centroid.y, endNode.centroid.z);
+    const endNode = pathfinding.getClosestNode(
+      targetPosition,
+      zoneName,
+      groupID
+    );
+    targetPosition.set(
+      endNode.centroid.x,
+      endNode.centroid.y,
+      endNode.centroid.z
+    );
 
     // console.log("GroupID, EndPosition, EndNode", groupID, targetPosition, endnode);
 
@@ -181,9 +195,15 @@ class PathFindingWebXR {
         );
         console.log({
           start: navStart,
-          end: navEnd
-        })
-        console.log("GroupID, Path, StartPosition, EndPosition", groupID, path, startPosition, targetPosition);
+          end: navEnd,
+        });
+        console.log(
+          "GroupID, Path, StartPosition, EndPosition",
+          groupID,
+          path,
+          startPosition,
+          targetPosition
+        );
         console.log("Zone", zoneData);
 
         if (path != null) {
@@ -191,7 +211,7 @@ class PathFindingWebXR {
           points.push(navStart);
           for (let index = 0; index < path.length; index++) {
             points.push(path[index]);
-            navCubes[index].position.set(path[index].x, 0.2, path[index].z);
+            navCubes[index].position.set(path[index].x, 0, path[index].z);
             navCubes[index].visible = true;
           }
           for (

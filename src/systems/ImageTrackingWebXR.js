@@ -1,5 +1,6 @@
 import { Vector3, Quaternion, Euler, BoxGeometry, MeshNormalMaterial, DoubleSide, SphereGeometry, Mesh } from "three";
 import { ARButton } from "three/addons/webxr/ARButton.js";
+import Positions from "../data.js"
 
 // Vector3 for marker world position
 let markerWorldPosition = new Vector3();
@@ -118,11 +119,11 @@ class ImageTrackingWebXR {
                         markerWorldRotation.setFromQuaternion(markerWorldQuaternion);
 
                         // setting the offset for the specific marker
-                        navigationArea.position.set(-40, 0, 4);
+                        const markerPosition = Positions["marker"].position
+                        navigationArea.position.set(markerPosition.x, markerPosition.y, markerPosition.z);
                     }
                     console.log("Image target world position", imageIndex, markerWorldPosition);
                     console.log("Image target world rotation", imageIndex, markerWorldRotation);
-
                     // set starting point to start-room center
                     navigationAreaParent.position.copy(markerWorldPosition);
                     navigationAreaParent.rotation.copy(markerWorldRotation);
