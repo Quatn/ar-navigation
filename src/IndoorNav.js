@@ -1,11 +1,10 @@
 import { createCamera } from "./components/camera.js";
 import { createControls } from "./components/controls.js";
-import { createImageTrackingWebXR, createImageTrackingARJS } from "./components/imageTracking.js";
+import { createImageTrackingWebXR } from "./components/imageTracking.js";
 import { createLights } from "./components/lights.js";
-import { createRenderer, setupARSession, setupARJS } from "./components/renderer.js";
+import { createRenderer, setupARSession } from "./components/renderer.js";
 import { createScene } from "./components/scene.js";
 
-import { setupNavigationAreaGeometry } from "./components/navigation/navigationArea.js";
 import { createPathFindingWebXR } from "./components/navigation/pathfinding.js";
 
 import { Resizer } from "./systems/Resizer.js";

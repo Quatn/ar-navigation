@@ -35,14 +35,5 @@ function setupARSession(renderer, camera, scene, navigationAreaParent) {
     });
 }
 
-function setupARJS(imageTrackingARJS, camera, scene, renderer, navigationAreaParent) {
-    // start AR session
-    renderer.xr.addEventListener("sessionstart", (event) => {
-        // init AR.js
-        imageTrackingARJS.init(camera, scene, renderer, navigationAreaParent, navigationAreaParent.children[0]);
-    });
-    // disable spinner
-    document.querySelector(".arjs-loader-spinner").style.display = "none";
-}
 
-export { createRenderer, setupARSession, setupARJS };
+export { createRenderer, setupARSession };

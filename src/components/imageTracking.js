@@ -1,5 +1,4 @@
 import { ImageTrackingWebXR } from "../systems/ImageTrackingWebXR";
-import { ImageTrackingARJS } from "../systems/ImageTrackingARJS";
 
 function createImageTrackingWebXR(renderer, navigationAreaParent) {
     const imageTrackingWebXR = new ImageTrackingWebXR();
@@ -7,10 +6,4 @@ function createImageTrackingWebXR(renderer, navigationAreaParent) {
     return imageTrackingWebXR;
 }
 
-function createImageTrackingARJS(renderer) {
-    const imageTrackingARJS = new ImageTrackingARJS();
-    imageTrackingARJS.tick = (timestamp, frame) => imageTrackingARJS.updateImageTrackingARJS();
-    return imageTrackingARJS;
-}
-
-export { createImageTrackingWebXR, createImageTrackingARJS };
+export { createImageTrackingWebXR };
