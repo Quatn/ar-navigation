@@ -96,10 +96,11 @@ class PathFindingWebXR {
     }
 
     document
-      .getElementById("showRoomTarget")
-      .addEventListener("click", () => {
-        console.log("showRoom selected");
-        const position = Positions['showRoomTarget'].position
+      .getElementById("selectedTarget")
+      .addEventListener("change", (e) => {
+        console.log("showRoom selected",e.target.value);
+        const value = e.target.value;
+        const position = Positions[value].position
         tempTargetPosition.set(position.x, position.y, position.z);
       });
   }

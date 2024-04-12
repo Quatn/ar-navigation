@@ -38,11 +38,10 @@ function AlphaRFirstFloor() {
     // navigationArea.add(createWallElement(new Vector3(-5.2, 1, 1.2), new Vector3(0, 0, 0), new Vector3(1.68, 3, 0.06), occluderMaterial));
     // navigationArea.add(createWallElement(new Vector3(1.58, 1, 4.8), new Vector3(0, 0, 0), new Vector3(20.4, 3, 0.06), occluderMaterial));
 
-    navigationArea.add(createWallElement(new Vector3(0.7, 2, 2.5), new Vector3(0, 0, 0), new Vector3(0.4, 1, 0.06), occluderMaterial));
 
 
     // //Vertical walls
-    // // navigationArea.add(createWallElement(new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(7.91, 3, 0.06)));
+    // navigationArea.add(createWallElement(new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(7.91, 3, 0.06)));
     // navigationArea.add(createWallElement(new Vector3(11.78, 1, 0.34), new Vector3(0, 0, 0), new Vector3(0.06, 3, 9), occluderMaterial));
     
     // //1 group
@@ -88,7 +87,7 @@ function AlphaRFirstFloor() {
     // navigationArea.add(createWallElement(new Vector3(-8.64, 1, 3.86), new Vector3(0, 0, 0), new Vector3(0.06, 3, 1.82), occluderMaterial));
     
     // set starting point to start-room center
-    navigationArea.position.set(4, 0, -6);
+    // navigationArea.position.set(4, 0, -6);
 
      // create floor
      const floorGeometry = new PlaneGeometry(120, 40);
@@ -97,12 +96,13 @@ function AlphaRFirstFloor() {
      const floorPlaneMesh = new Mesh(floorGeometry, floorMaterial);
      floorPlaneMesh.rotation.x = -0.5 * Math.PI
      floorPlaneMesh.renderOrder = 3;
-    //  floorPlaneMesh.visible = false;
+     floorPlaneMesh.visible = false;
      navigationArea.add(floorPlaneMesh);
  
      // navigation area parent for easier placement
      const navigationAreaParent = new Group();
      navigationAreaParent.add(navigationArea);
+    // navigationAreaParent.add(createWallElement(new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0.1, 7, 0.6), occluderMaterial));
      navigationAreaParent.add(createWallElement(new Vector3(-40, 0, 4), new Vector3(0, 0, 0), new Vector3(0.1, 7, 0.6), occluderMaterial));
      navigationAreaParent.add(createWallElement(new Vector3(40, 0, 4), new Vector3(0, 0, 0), new Vector3(0.1, 7, 0.6), occluderMaterial));
      return navigationAreaParent;

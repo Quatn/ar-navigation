@@ -19,9 +19,9 @@ class ImageTrackingWebXR {
         const imgMarkerHiroBitmap = await createImageBitmap(imgMarkerHiro);
         console.log(imgMarkerHiroBitmap);
 
-        const imgNFTEarth = document.getElementById("imgNFTEarth");
-        const imgNFTEarthBitmap = await createImageBitmap(imgNFTEarth);
-        console.log(imgNFTEarthBitmap);
+        const fptMarker = document.getElementById("fpt-marker");
+        const fptMarkerBitmap = await createImageBitmap(fptMarker);
+        console.log(fptMarkerBitmap);
 
         // add object for our hiro marker image
         const hiroMarkerGeometry = new BoxGeometry(0.2, 0.2, 0.2);
@@ -48,7 +48,7 @@ class ImageTrackingWebXR {
         earthNFTMesh = new Mesh(earthNFTGeometry, earthNFTMaterial);
         earthNFTMesh.name = "EarthNFTSphere";
         earthNFTMesh.matrixAutoUpdate = false;
-        earthNFTMesh.visible = false;
+        earthNFTMesh.visible = true;
         scene.add(earthNFTMesh);
 
         //more on image-tracking feature: https://github.com/immersive-web/marker-tracking/blob/main/explainer.md
@@ -60,7 +60,7 @@ class ImageTrackingWebXR {
                     widthInMeters: 0.2, // in meters what the size of the PRINTED image in the real world
                 },
                 {
-                    image: imgNFTEarthBitmap, // tell webxr this is the image target we want to track
+                    image: fptMarkerBitmap, // tell webxr this is the image target we want to track
                     widthInMeters: 0.2, // in meters what the size of the PRINTED image in the real world
                 },
             ],
@@ -70,6 +70,7 @@ class ImageTrackingWebXR {
                 root: document.body,
             },
         });
+    
         document.body.appendChild(button);
     }
 
@@ -109,8 +110,10 @@ class ImageTrackingWebXR {
                         navigationArea.position.set(-2.8, 0, 2);
                     }
                     if (imageIndex == 1) {
+                        const markerPosition = Positions["marker"].position
                         earthNFTMesh.visible = true;
                         // update the target mesh when the earth image target is found
+                        // earthNFTMesh.position.set(markerPosition.x, markerPosition.y, markerPosition.z)
                         earthNFTMesh.matrix.fromArray(pose.transform.matrix);
                         console.log("EarthNFT Image target has been found", earthNFTMesh.position);
 
@@ -119,7 +122,6 @@ class ImageTrackingWebXR {
                         markerWorldRotation.setFromQuaternion(markerWorldQuaternion);
 
                         // setting the offset for the specific marker
-                        const markerPosition = Positions["marker"].position
                         navigationArea.position.set(markerPosition.x, markerPosition.y, markerPosition.z);
                     }
                     console.log("Image target world position", imageIndex, markerWorldPosition);
