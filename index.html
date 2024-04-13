@@ -17,21 +17,18 @@
       alt="hiro"
       style="display: none"
     />
-    <img
-      id="fpt-marker"
-      src="fpt-marker.jpg"
-      alt="earth"
-      style="display: none"
-    />
-    <!-- spinner for AR.js load process -->
-    <!-- <div class="arjs-loader">
-            <div class="arjs-loader-spinner"></div>
-        </div> -->
     <div id="scene-container">
       <!-- Our <canvas> will be inserted here -->
     </div>
     <div id="wrapper">
-      <select name="selectedTarget" id="selectedTarget">
+      <h1 id="header" class="non-ar-element">Enter AR mode then scan this marker</h1>
+      <img
+      id="fpt-marker"
+      class="non-ar-element"
+      src="fpt-marker.jpg"
+      alt="fpt-marker"
+    />
+      <select name="selectedTarget" id="selectedTarget" style="visibility: hidden;">
         <option value="Showroom">Showroom</option>
         <option value="AlphaR102">AlphaR102</option>
       </select>

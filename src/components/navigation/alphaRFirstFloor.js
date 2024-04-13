@@ -103,8 +103,8 @@ function AlphaRFirstFloor() {
      const navigationAreaParent = new Group();
      navigationAreaParent.add(navigationArea);
     // navigationAreaParent.add(createWallElement(new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0.1, 7, 0.6), occluderMaterial));
-     navigationAreaParent.add(createWallElement(new Vector3(-40, 0, 4), new Vector3(0, 0, 0), new Vector3(0.1, 7, 0.6), occluderMaterial));
-     navigationAreaParent.add(createWallElement(new Vector3(40, 0, 4), new Vector3(0, 0, 0), new Vector3(0.1, 7, 0.6), occluderMaterial));
+    //  navigationAreaParent.add(createWallElement(new Vector3(-40, 0, 4), new Vector3(0, 0, 0), new Vector3(0.1, 7, 0.6), occluderMaterial));
+    //  navigationAreaParent.add(createWallElement(new Vector3(40, 0, 4), new Vector3(0, 0, 0), new Vector3(0.1, 7, 0.6), occluderMaterial));
      return navigationAreaParent;
 }
 

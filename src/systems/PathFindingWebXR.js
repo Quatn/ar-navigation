@@ -210,6 +210,7 @@ class PathFindingWebXR {
         console.log("Zone", zoneData);
 
         if (path != null) {
+          pathfindinghelper.reset()
           pathfindinghelper.setPlayerPosition(startPosition)
           pathfindinghelper.setTargetPosition(targetPosition)
           pathfindinghelper.setPath(path);
