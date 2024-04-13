@@ -8,14 +8,14 @@ import {
   LineBasicMaterial,
 } from "three";
 
-import { Pathfinding } from "three-pathfinding";
+import { Pathfinding, PathfindingHelper } from 'three-pathfinding';
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import NavMeshUrl from "/alphaRFirstFloor.gltf";
 import alphaRFirstFloorModelUrl from "/alphaRFirstFloor.glb?url";
 import Positions from "../data.js"
 
 const zeroVector = new Vector3(0, 0, 0);
-
+const pathfindinghelper = new PathfindingHelper();
 let pathfinding = new Pathfinding();
 let zoneName = "level1";
 let groupID;
@@ -40,6 +40,8 @@ class PathFindingWebXR {
   constructor(cameraParam, navigationAreaParam) {
     camera = cameraParam;
     navigationArea = navigationAreaParam;
+
+    navigationArea.add(pathfindinghelper)
 
     // setup navmesh and navigation targets
     const loader = new GLTFLoader();
@@ -74,26 +76,26 @@ class PathFindingWebXR {
       }
     );
 
-    // navigation line
-    const lineGeometry = new BufferGeometry();
-    const lineMaterial = new LineBasicMaterial({
-      color: 0xff0000,
-      linewidth: 12,
-    });
-    line = new Line(lineGeometry, lineMaterial);
-    line.renderOrder = 3;
-    navigationArea.add(line);
+    // // navigation line
+    // const lineGeometry = new BufferGeometry();
+    // const lineMaterial = new LineBasicMaterial({
+    //   color: 0xff0000,
+    //   linewidth: 12,
+    // });
+    // line = new Line(lineGeometry, lineMaterial);
+    // line.renderOrder = 3;
+    // navigationArea.add(line);
 
-    // highlight line vertices with small cubes
-    const geometry = new BoxGeometry(0.1, 0.1, 0.1);
-    const material = new MeshBasicMaterial({ color: 0xff0000 });
-    for (let index = 0; index < 50; index++) {
-      const cube = new Mesh(geometry, material);
-      cube.visible = false;
-      cube.renderOrder = 3;
-      navCubes.push(cube);
-      navigationArea.add(cube);
-    }
+    // // highlight line vertices with small cubes
+    // const geometry = new BoxGeometry(0.1, 0.1, 0.1);
+    // const material = new MeshBasicMaterial({ color: 0xff0000 });
+    // for (let index = 0; index < 50; index++) {
+    //   const cube = new Mesh(geometry, material);
+    //   cube.visible = false;
+    //   cube.renderOrder = 3;
+    //   navCubes.push(cube);
+    //   navigationArea.add(cube);
+    // }
 
     document
       .getElementById("selectedTarget")
@@ -208,22 +210,25 @@ class PathFindingWebXR {
         console.log("Zone", zoneData);
 
         if (path != null) {
-          const points = [];
-          points.push(navStart);
-          for (let index = 0; index < path.length; index++) {
-            points.push(path[index]);
-            navCubes[index].position.set(path[index].x, 0, path[index].z);
-            navCubes[index].visible = true;
-          }
-          for (
-            let unsetIndex = path.length;
-            unsetIndex < navCubes.length;
-            unsetIndex++
-          ) {
-            navCubes[unsetIndex].position.set(0, 0, 0);
-            navCubes[unsetIndex].visible = false;
-          }
-          line.geometry.setFromPoints(points);
+          pathfindinghelper.setPlayerPosition(startPosition)
+          pathfindinghelper.setTargetPosition(targetPosition)
+          pathfindinghelper.setPath(path);
+          // const points = [];
+          // points.push(navStart);
+          // for (let index = 0; index < path.length; index++) {
+          //   points.push(path[index]);
+          //   navCubes[index].position.set(path[index].x, 0, path[index].z);
+          //   navCubes[index].visible = true;
+          // }
+          // for (
+          //   let unsetIndex = path.length;
+          //   unsetIndex < navCubes.length;
+          //   unsetIndex++
+          // ) {
+          //   navCubes[unsetIndex].position.set(0, 0, 0);
+          //   navCubes[unsetIndex].visible = false;
+          // }
+          // line.geometry.setFromPoints(points);
         }
       }
     }
