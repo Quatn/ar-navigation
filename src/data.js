@@ -15,7 +15,7 @@ export default {
   },
   marker: {
     position: {
-      x: -40,
+      x: 40,
       y: -3,
       z: 4,
     },
