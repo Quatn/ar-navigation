@@ -1,4 +1,4 @@
-import { IndoorNav } from "./src/IndoorNav.js";
+import { IndoorNav } from "src/IndoorNav.js";
 
 async function main() {
     // Get a reference to the container element
