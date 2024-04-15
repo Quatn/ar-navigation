@@ -8,7 +8,7 @@ import {
   SphereGeometry,
   Mesh,
 } from "three";
-import { ARButton } from "three/addons/webxr/ARButton.js";
+import { ARButton } from "../../node_modules/three/examples/jsm/webxr/ARButton.js";
 import Positions from "../data.js";
 
 // Vector3 for marker world position
