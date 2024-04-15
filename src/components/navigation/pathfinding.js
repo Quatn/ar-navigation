@@ -1,4 +1,4 @@
-import { PathFindingWebXR } from "../../systems/PathFindingWebXR.js";
+import { PathFindingWebXR } from "../../systems/PathFindingWebXR";
 
 function createPathFindingWebXR(camera, imageTracking, navigationAreaParent) {
     const pathFindingWebXR = new PathFindingWebXR(camera, navigationAreaParent.children[0]);

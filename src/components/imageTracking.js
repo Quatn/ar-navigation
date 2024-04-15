@@ -1,4 +1,4 @@
-import { ImageTrackingWebXR } from "../systems/ImageTrackingWebXR.js";
+import { ImageTrackingWebXR } from "../systems/ImageTrackingWebXR";
 
 function createImageTrackingWebXR(renderer, navigationAreaParent) {
     const imageTrackingWebXR = new ImageTrackingWebXR();
